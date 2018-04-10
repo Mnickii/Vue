@@ -1,9 +1,9 @@
 <template>
   <div class="news-item">
-    <h1><a :href="newsData.url">{{ newsData.title }}</a></h1>
-    <img :src="newsData.urlToImage"/>
+    <h2><a :href="newsData.url">{{ newsData.title }}</a></h2>
+    <img :src="newsData.urlToImage" class="news-image"/>
     <h4>{{ newsData.description }}</h4>
-    <a :href="newsData.url"> Show more </a>
+    <h4><a :href="newsData.url"> Show more</a></h4>
   </div>
 </template>
 
@@ -25,3 +25,18 @@ export default {
   },
 };
 </script>
+
+<style>
+.news-image {
+  width: 80%
+}
+.news-item {
+   width: 50vw;
+   box-sizing: border-box;
+   padding: 0.2rem;
+   background: #fafafa;
+}
+.news-item a{
+  color: black;
+}
+</style>

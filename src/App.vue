@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-    <img src="./assets/InFomd.png">
+    <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet">
+    <link href="https://unpkg.com/vuetify/dist/vuetify.min.css" rel="stylesheet">
+    <h1>Infomd</h1>
     <router-view/>
   </div>
 </template>
@@ -13,11 +15,8 @@ export default {
 
 <style>
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  background: #fafafa;
+  margin-top: 20px;
 }
 </style>

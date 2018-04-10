@@ -1,11 +1,10 @@
 <template>
-  <div class="hello">
+  <div class="headlines">
       <news-item v-for="(newsitem, index) in newsitems" :news-data="newsitem" :key="index"/>
   </div>
 </template>
 
 <script>
-import axios from 'axios';
 import NewsItem from '@/components/NewsItem';
 
 export default {
@@ -13,24 +12,21 @@ export default {
   components: {
     NewsItem,
   },
-  data() {
-    return {
-      newsitems: [],
-    };
+  computed: {
+    newsitems() {
+      return this.$store.state.news.newsItems;
+    },
   },
   created() {
-    axios.get('http://newsapi.org/v2/top-headlines', {
-      params: {
-        country: 'us',
-        apiKey: process.env.API_KEY,
-      },
-    })
-      .then((response) => {
-        this.newsitems = response.data.articles;
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    this.$store.dispatch('news/loadNewsItems');
   },
 };
 </script>
+ <style>
+.headlines {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 0.6rem;
+  background: #fafafa;
+}
+ </style>
