@@ -14,9 +14,6 @@ export default {
     newsData: {
       type: Object,
       required: true,
-      validator(newsData) {
-        return newsData.title && newsData.description && newsData.urlToImage && newsData.url;
-      },
     },
   },
   data() {
