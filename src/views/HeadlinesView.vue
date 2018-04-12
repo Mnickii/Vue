@@ -1,15 +1,18 @@
 <template>
   <div class="headlines">
-      <news-item v-for="(newsitem, index) in newsitems" :news-data="newsitem" :key="index"/>
+    <search/>
+    <news-item v-for="(newsitem, index) in newsitems" :news-data="newsitem" :key="index"/>
   </div>
 </template>
 
 <script>
 import NewsItem from '@/components/NewsItem';
+import Search from '@/components/Search';
 
 export default {
   name: 'Headlines',
   components: {
+    Search,
     NewsItem,
   },
   computed: {
