@@ -4,6 +4,10 @@
     <img :src="newsData.urlToImage" class="news-image"/>
     <h4>{{ newsData.description }}</h4>
     <h4><a :href="newsData.url"> Show more</a></h4>
+    <button
+      @click.prevent="markRead">
+      Mark as read
+    </button>
   </div>
 </template>
 
@@ -19,6 +23,11 @@ export default {
   data() {
     return {
     };
+  },
+  methods: {
+    markRead() {
+      this.$store.commit('news/deleteNewsItem', this.newsData);
+    },
   },
 };
 </script>

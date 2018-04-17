@@ -1,11 +1,21 @@
 <template>
-  <div class="headlines">
-    <search/>
-    <news-item v-for="(newsitem, index) in newsitems" :news-data="newsitem" :key="index"/>
+<div>
+  <search/>
+  <div v-if="newsItems.length > 0">
+    <div class="headlines">
+      <news-item v-for="(newsitem, index) in newsItems" :news-data="newsitem" :key="index"/>
+    </div>
+    <button
+      @click.prevent="loadMore">
+      Load More
+    </button>
   </div>
+  <div v-else>Sorry, Nothing else here! :)</div>
+</div>
 </template>
 
 <script>
+import { mapState } from 'vuex';
 import NewsItem from '@/components/NewsItem';
 import Search from '@/components/Search';
 
@@ -16,12 +26,15 @@ export default {
     NewsItem,
   },
   computed: {
-    newsitems() {
-      return this.$store.state.news.newsItems;
-    },
+    ...mapState('news', ['newsItems']),
   },
   created() {
     this.$store.dispatch('news/loadNewsItems');
+  },
+  methods: {
+    loadMore() {
+      this.$store.dispatch('news/loadMoreNewsItems');
+    },
   },
 };
 </script>
