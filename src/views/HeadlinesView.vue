@@ -1,9 +1,20 @@
 <template>
 <div>
-  <search/>
+  <div class="row">
+    <search/>
+    <button class="button">
+      <router-link to="read">Read</router-link>
+    </button>
+  </div>
   <div v-if="newsItems.length > 0">
     <div class="headlines">
-      <news-item v-for="(newsitem, index) in newsItems" :news-data="newsitem" :key="index"/>
+      <news-item
+      v-for="(newsitem, index) in newsItems"
+      :news-data="newsitem"
+      :key="index"
+      :show-mark-as-read="true"
+      :show-mark-as-unread="false"
+      />
     </div>
     <button
       @click.prevent="loadMore">
@@ -27,9 +38,6 @@ export default {
   },
   computed: {
     ...mapState('news', ['newsItems']),
-  },
-  created() {
-    this.$store.dispatch('news/loadNewsItems');
   },
   methods: {
     loadMore() {
