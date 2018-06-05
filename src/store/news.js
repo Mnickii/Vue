@@ -4,6 +4,7 @@ export default {
   namespaced: true,
   state: {
     newsItems: [],
+    readItems: [],
     page: 1,
   },
   actions: {
@@ -36,9 +37,15 @@ export default {
     setNews(state, data) {
       state.newsItems = data;
     },
-    deleteNewsItem(state, data) {
+    readNewsItem(state, data) {
       const dataIndex = state.newsItems.indexOf(data);
       state.newsItems.splice(dataIndex, 1);
+      state.readItems.push(data);
+    },
+    unreadNewsItem(state, data) {
+      const dataIndex = state.readItems.indexOf(data);
+      state.readItems.splice(dataIndex, 1);
+      state.newsItems.push(data);
     },
     newPage(state) {
       state.page += 1;
